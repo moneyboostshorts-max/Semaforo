@@ -1,0 +1,6 @@
+SEMÁFORO DE VIAGENS - como gerar o instalador (sem programar)
+1. Crie conta grátis em github.com e toque em "+" > "New repository", nome: semaforo. Crie.
+2. Na página do repositório toque em "uploading an existing file" e envie TODOS os arquivos desta pasta (incluindo a pasta .github). Toque em "Commit changes".
+3. Abra a aba "Actions", espere a bolinha ficar verde (uns 5 min), abra a execução e baixe "Semaforo-instalador".
+4. No celular, abra o arquivo .apk, permita instalar e abra "Semáforo de Viagens".
+5. Toque em "Ativar leitura das corridas" e ligue "Semáforo de Viagens" na lista.
