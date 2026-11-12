@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Semáforo de Viagens</string>
+    <string name="desc_servico">Lê automaticamente os valores das corridas na tela e calcula se vale a pena.</string>
+</resources>
