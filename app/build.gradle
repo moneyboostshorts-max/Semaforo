@@ -18,9 +18,9 @@ android {
     signingConfigs {
         release {
             storeFile file("signing.keystore")
-            storePassword "NmnOLD6aQkNr"
+            storePassword "Nmn0LD6aQkNr"
             keyAlias "my-key-alias"
-            keyPassword "NmnOLD6aQkNr"
+            keyPassword "Nmn0LD6aQkNr"
         }
     }
 
@@ -28,7 +28,6 @@ android {
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
