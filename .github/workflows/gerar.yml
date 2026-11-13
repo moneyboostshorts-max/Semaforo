@@ -1,23 +1,48 @@
-name: Gerar AAB e APK Grana no Volante Oficial (Versao 2)
-on: [push, workflow_dispatch]
+name: Compilar Grana no Volante Oficial (Versao 3)
+
+on:
+  push:
+    branches: [ main, principal ]
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Baixa o codigo
+        uses: actions/checkout@v4
+
+      - name: Configura Java 17
+        uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 17
-      - uses: gradle/actions/setup-gradle@v4
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Configura Android SDK 36
+        uses: android-actions/setup-android@v3
+
+      - name: Instala plataforma Android 36
+        run: |
+          yes | sdkmanager --licenses || true
+          sdkmanager "platforms;android-36" "build-tools;36.0.0" || true
+
+      - name: Configura Gradle 8.5
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.5'
-      - run: gradle bundleRelease assembleRelease --stacktrace
-      - uses: actions/upload-artifact@v4
+
+      - name: Compila Pacote Oficial AAB e APK
+        run: gradle bundleRelease assembleRelease --stacktrace
+
+      - name: Guarda AAB Oficial para Play Store
+        uses: actions/upload-artifact@v4
         with:
-          name: GranaNoVolante-V2-Oficial-AAB
-          path: app/build/outputs/bundle/release/*.aab
-      - uses: actions/upload-artifact@v4
+          name: GranaNoVolante-V3-Oficial-AAB
+          path: app/build/outputs/bundle/release/app-release.aab
+
+      - name: Guarda APK de Teste
+        uses: actions/upload-artifact@v4
         with:
-          name: GranaNoVolante-V2-Teste-APK
-          path: app/build/outputs/apk/release/*.apk
+          name: GranaNoVolante-V3-Teste-APK
+          path: app/build/outputs/apk/release/app-release.apk
